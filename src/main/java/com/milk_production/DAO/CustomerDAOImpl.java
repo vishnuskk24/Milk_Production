@@ -81,6 +81,16 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 		return customerEntity.getCustmerId();
 	}
+	@Override
+	public Customer getCustomerDetail(Integer customerId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public Integer getCustomerIdByAadhaarNo(Long aadhaarNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

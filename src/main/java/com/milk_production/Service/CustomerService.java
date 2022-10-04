@@ -8,4 +8,5 @@ public interface CustomerService {
 	public Customer getCustomerDetail(Integer CustomerId) throws Exception;
 	public Customer getCustomerDetailByAadhaarNo(Long aadhaarNo) throws Exception;
 	public Customer getCustomerDetailByPhoneNo(Long aadhaarNo) throws Exception;
+	
 }

@@ -40,7 +40,7 @@ public class CustomerAPI {
 			
 		}
 			
-		}
+		}																// getting  detail by providing aadhaar number
 	@GetMapping(value = "/getcustomerdetail/aadharno")
 	public ResponseEntity<Customer> getCustomerDetailsByAadharNo(@RequestBody Customer customer) throws Exception{
 		try {
@@ -55,7 +55,7 @@ public class CustomerAPI {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage());
 	}
 	
-	}
+	}																// getting  detail by providing Phone number
 	@GetMapping(value = "/getcustomerdetail/phoneno")
 	public ResponseEntity<Customer> getCustomerDetailsByPhoneNo(@RequestBody Customer customer) throws Exception{
 	try {
@@ -70,7 +70,7 @@ public class CustomerAPI {
 	}
 			
 	}
-							// getting 
+							// getting  detail by providing customer id 
 		@GetMapping(value = "/getcustomerdetail/id")
 		public ResponseEntity<Customer> getCustomerDetailsByCustomerId(@RequestBody Customer customer) throws Exception{
 			try {

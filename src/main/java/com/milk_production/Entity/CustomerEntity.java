@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.milk_production.Model.CustomerStatus;
 import com.milk_production.Model.Gender;
 
 
@@ -27,6 +28,9 @@ public class CustomerEntity {
 	private String customerName;
 	private Long aadhaarNo;
 	private Long phoneNo;
+	@Enumerated(EnumType.STRING)
+	private CustomerStatus status;
+	
 	private Integer age;
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
@@ -114,6 +118,12 @@ public class CustomerEntity {
 	}
 	public void setBankDetailsEntity(BankDetailsEntity bankDetailsEntity) {
 		this.bankDetailsEntity = bankDetailsEntity;
+	}
+	public CustomerStatus getStatus() {
+		return status;
+	}
+	public void setStatus(CustomerStatus status) {
+		this.status = status;
 	}
 	
 	

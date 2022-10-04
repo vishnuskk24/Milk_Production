@@ -12,6 +12,7 @@ import com.milk_production.Entity.AddressEntity;
 import com.milk_production.Entity.BankDetailsEntity;
 import com.milk_production.Entity.CustomerEntity;
 import com.milk_production.Model.Customer;
+import com.milk_production.Model.CustomerStatus;
 
 @Repository(value = "customerDAO")
 public class CustomerDAOImpl implements CustomerDAO {
@@ -123,6 +124,42 @@ public class CustomerDAOImpl implements CustomerDAO {
 		// TODO Auto-generated method stub
 		return customer;
 	
+	}
+	
+	@Override
+	public Boolean updateCustomerNameById(Integer customerId, String customerName) {
+		// TODO Auto-generated method stub
+		
+		CustomerEntity customerEntity = entityManager.find(CustomerEntity.class, customerId);
+		customerEntity.setCustomerName(customerName);
+		return true;
+	}
+	
+	
+	@Override
+	public Boolean updateCustomerAgeById(Integer customerId, Integer age) {
+		// TODO Auto-generated method stub
+		CustomerEntity customerEntity = entityManager.find(CustomerEntity.class, customerId);
+		customerEntity.setAge(age);
+		return true;
+	}
+	@Override
+	public Boolean updateCustomerPhoneNoById(Integer customerId, Long phoneNo) {
+		CustomerEntity customerEntity = entityManager.find(CustomerEntity.class, customerId);
+		customerEntity.setPhoneNo(phoneNo);
+		return true;
+	}
+	@Override
+	public Boolean updateCustomeraadhaarNoById(Integer customerId, Long aadhaarNo) {
+		CustomerEntity customerEntity = entityManager.find(CustomerEntity.class, customerId);
+		customerEntity.setAadhaarNo(aadhaarNo);
+		return true;	
+	}
+	@Override
+	public Boolean deactivateCustomerByCustomerId(Integer customerId) {
+		CustomerEntity customerEntity = entityManager.find(CustomerEntity.class, customerId);
+		customerEntity.setStatus(CustomerStatus.Deactivated);
+		return true;
 	}
 	
 	

@@ -1,4 +1,4 @@
-package com.milk_production.Model;
+ package com.milk_production.Model;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -24,6 +24,8 @@ public class Customer {
 	private Long phoneNo;
 	private Integer age;
 	private Gender gender;
+	private CustomerStatus status;
+	
 	private LocalDate dateOfJoined;
 	private Address address;
 	private List<Order> orders;
@@ -96,5 +98,11 @@ public class Customer {
 	}
 	public void setBankDetails(BankDetails bankDetails) {
 		this.bankDetails = bankDetails;
+	}
+	public CustomerStatus getStatus() {
+		return status;
+	}
+	public void setStatus(CustomerStatus status) {
+		this.status = status;
 	}
 }

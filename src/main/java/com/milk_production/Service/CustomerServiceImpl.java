@@ -17,11 +17,15 @@ public class CustomerServiceImpl implements CustomerService{
 		
 		Customer customer = customerDAO.getCustomerByAadhaarNo(registrationDetails.getAadhaarNo());
 		
-		if(customer!=null) {
+		if(customer!=null) { 					// customer is already available
 			
 			throw new Exception("Service.CUSTOMER_ALREADY_EXIST");
+		}else { 								// customer is not available
+			
+			Integer customerId =customerDAO.registerCustomer(customer);
+			return customerId;
 		}
-		return null;
+		
 
 		
 	}

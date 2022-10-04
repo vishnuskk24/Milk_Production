@@ -8,6 +8,8 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
+import com.milk_production.Entity.AddressEntity;
+import com.milk_production.Entity.BankDetailsEntity;
 import com.milk_production.Entity.CustomerEntity;
 import com.milk_production.Model.Customer;
 
@@ -41,7 +43,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 	@Override
 	public Integer registerCustomer(Customer customer) {
-		// TODO Auto-generated method stub
+//		adding customer with address and bank detils
+		
 		
 		CustomerEntity customerEntity = new CustomerEntity();	 //setting customer values from model to entity
 		customerEntity.setAadhaarNo(customer.getAadhaarNo());
@@ -51,8 +54,32 @@ public class CustomerDAOImpl implements CustomerDAO {
 		customerEntity.setGender(customer.getGender());
 		customerEntity.setPhoneNo(customer.getPhoneNo());
 		
+//		setting  bank details
 		
-		return null;
+		BankDetailsEntity bankDetailsEntity = new BankDetailsEntity();
+		bankDetailsEntity.setAccountNo(customer.getBankDetails().getAccountNo());
+		bankDetailsEntity.setBankName(customer.getBankDetails().getBankName());
+		bankDetailsEntity.setBranchName(customer.getBankDetails().getBranchName());
+		bankDetailsEntity.setIfscCode(customer.getBankDetails().getIfscCode());
+		
+//		 setting address details
+		AddressEntity addressEntity  = new AddressEntity();
+		addressEntity.setDistrict(customer.getAddress().getDistrict());
+		addressEntity.setHouseNo(customer.getAddress().getHouseNo());
+		addressEntity.setPinCode(customer.getAddress().getPinCode());
+		addressEntity.setPlace(customer.getAddress().getPlace());
+		addressEntity.setStreetName(customer.getAddress().getStreetName());
+		addressEntity.setTaluk(customer.getAddress().getTaluk());
+		
+//		 settign address detail to customer Entity
+		customerEntity.setAddressEntity(addressEntity);
+		
+//		setting bank details to customerEntity object
+		customerEntity.setBankDetailsEntity(bankDetailsEntity);
+//		adding the all values to databases
+		entityManager.persist(customerEntity);
+		
+		return customerEntity.getCustmerId();
 	}
 	
 

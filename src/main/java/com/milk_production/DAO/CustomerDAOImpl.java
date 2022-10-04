@@ -81,16 +81,60 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 		return customerEntity.getCustmerId();
 	}
+	
 	@Override
 	public Customer getCustomerDetail(Integer customerId) {
 		// TODO Auto-generated method stub
-		return null;
+		CustomerEntity customerEntity = entityManager.find(CustomerEntity.class, customerId);
+		Customer customer=null;
+		if(customerEntity!=null) {
+			customer=new Customer();
+			customer.setAadhaarNo(customerEntity.getAadhaarNo());
+			customer.setAge(customerEntity.getAge());
+			customer.setCustmerId(customerEntity.getCustmerId());
+			customer.setCustomerName(customerEntity.getCustomerName());
+			customer.setDateOfJoined(customerEntity.getDateOfJoined());
+			customer.setGender(customerEntity.getGender());
+			customer.setPhoneNo(customerEntity.getPhoneNo());
+		}
+		
+		return customer;
 	}
 	@Override
-	public Integer getCustomerIdByAadhaarNo(Long aadhaarNo) {
+	public Customer getCustomerByPhoneNo(Long phoneNo) {
+
+		String queryString  =  "select c from CustomerEntity c where c.phoneNo=?1";
+		Query query  = entityManager.createQuery(queryString);
+		query.setParameter(1, phoneNo);
+		CustomerEntity customerEntity =  (CustomerEntity) query.getSingleResult();
+		Customer customer = null;
+		if(customerEntity!=null) {
+			customer = new Customer();
+			customer.setAadhaarNo(customerEntity.getAadhaarNo());
+			customer.setAge(customerEntity.getAge());
+			customer.setCustmerId(customerEntity.getCustmerId());
+			customer.setCustomerName(customerEntity.getCustomerName());
+			customer.setDateOfJoined(customerEntity.getDateOfJoined());
+			customer.setGender(customerEntity.getGender());
+			
+		}
+		
+		
 		// TODO Auto-generated method stub
-		return null;
+		return customer;
+	
 	}
+	
+	
+//	@Override
+//	public Integer getCustomerIdByAadhaarNo(Long aadhaarNo) {
+//		// TODO Auto-generated method stub
+//		String queryString  =  "select c from CustomerEntity c where c.aadhaarNo=?1";
+//		Query query  = entityManager.createQuery(queryString);
+//		query.setParameter(1, aadhaarNo);
+//		CustomerEntity customerEntity =  (CustomerEntity) query.getSingleResult();
+//		return null;
+//	}
 	
 
 }

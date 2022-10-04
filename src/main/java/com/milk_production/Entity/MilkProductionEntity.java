@@ -23,6 +23,13 @@ public class MilkProductionEntity {
 	private Double totalPrice;
 	private Float SNFValue;
 	private Float  fat;
+	private String remarks;	
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
 	private LocalDate producingDate;
 	@Enumerated(EnumType.STRING)
 	private Session session;

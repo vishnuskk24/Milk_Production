@@ -13,7 +13,19 @@ public class MilkProduction {
 	private Double totalPrice;
 	private Float SNFValue;
 	private Float  fat;
+	private String remarks;
+	private Session session;  
 	private LocalDate producingDate;
+	
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+
+	
 	
 	public Long getMilkProvidingId() {
 		return milkProvidingId;
@@ -79,5 +91,5 @@ public class MilkProduction {
 		this.session = session;
 	}
 
-	private Session session;
+	
 }

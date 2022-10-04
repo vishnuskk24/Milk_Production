@@ -45,9 +45,23 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public Customer getCustomerDetailByAadhaarNo(Long aadhaarNo) throws Exception{
 
-		Integer customerId = customerDAO.getCustomerIdByAadhaarNo(aadhaarNo);
+		Customer customer = customerDAO.getCustomerByAadhaarNo(aadhaarNo);
 		
-		Customer customer = customerDAO.getCustomerDetail(customerId);
+//		Customer customer = customerDAO.getCustomerDetail(customerId);
+		
+		if(customer==null) {
+		
+			throw new Exception("Service.CUSTOMER_NOT_AVAILABLE");
+					
+		}
+		return customer;
+	}
+	@Override
+	public Customer getCustomerDetailByPhoneNo(Long aadhaarNo) throws Exception{
+
+		Customer customer = customerDAO.getCustomerByPhoneNo(aadhaarNo);
+		
+//		Customer customer = customerDAO.getCustomerDetail(customerId);
 		
 		if(customer==null) {
 		

@@ -80,6 +80,7 @@ public class CustomerAPI {
 				Customer customerDetail = customerService.getCustomerDetail(customer.getCustmerId());
 				
 				return new ResponseEntity<Customer>(customerDetail,HttpStatus.OK);
+				 
 			}catch(Exception e) {
 			
 			
@@ -159,7 +160,7 @@ public class CustomerAPI {
 			
 		
 		}
-		@PutMapping(value = "/update/aadhaarno/{customerId}")
+		@PutMapping(value = "/update/customerstatus/{customerId}")
 		public ResponseEntity<String> deactivateCustomerByCustomerId(@PathVariable Integer customerId ) throws Exception{
 			try {
 				

@@ -22,6 +22,12 @@ public class MilkProductionServiceImpl implements MilkProductionService {
 		
 		// TODO Auto-generated method stubb
 		List<MilkDetails> milkReports=milkProductionDAO.getMilkDetailsByOwnerId(ownerId);
+		if(milkReports==null) {
+			throw new Exception("CUSTOMER_NOT_FOUND");
+		}
+		else if(milkReports.size()==0){
+			throw new Exception("NO_MILK_RECORD_FOUND");
+		}
 		for(MilkDetails milkDetail : milkReports) {
 			if(milkDetail.getProducingDate().equals(LocalDate.now())) {
 				if(milkDetail.getSession().equals(Validator.getSession())) {
@@ -37,6 +43,17 @@ public class MilkProductionServiceImpl implements MilkProductionService {
 		Long milkProducingId =milkProductionDAO.addMilkDetails(ownerId,milkDetails);
 		
 		return milkProducingId;
+	}
+	@Override
+	public List<MilkDetails> getMilkDetails(Integer ownerId) throws Exception {
+		List<MilkDetails> milkReports=milkProductionDAO.getMilkDetailsByOwnerId(ownerId);
+		if(milkReports==null) {
+			throw new Exception("CUSTOMER_NOT_FOUND");
+		}
+		else if(milkReports==null) {
+			throw new Exception("NO_MILK_RECORD_FOUND");
+		}
+		return milkReports;
 	}
 
 	@Override

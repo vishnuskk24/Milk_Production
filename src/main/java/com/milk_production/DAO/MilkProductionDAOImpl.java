@@ -24,10 +24,10 @@ public class MilkProductionDAOImpl implements MilkProducionDAO {
 		
 		CustomerEntity ce  = entityManager.find(CustomerEntity.class, ownerId);
 			if(ce!=null) {
-				
+				milkReport=new ArrayList<>();
 				List<MilkDetailsEntity> milkEntityReport = ce.getMilkProductionEntities();
 					if(milkEntityReport.size()!=0) {
-						milkReport=new ArrayList<>();
+						
 					
 							for(MilkDetailsEntity milkDetailsEntity:milkEntityReport) {
 								

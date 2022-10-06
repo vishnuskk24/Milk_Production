@@ -1,9 +1,12 @@
 package com.milk_production.API;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -32,6 +35,19 @@ public class MilkProductionApI {
 	Long resp =	milkProductionService.addMilkDetails(ownerId,milkDetails);
 	String msg = "MILK_DETAILS_INSERT_SUCCESS";
 	return new ResponseEntity<String>(environment.getProperty(msg) + " " +resp ,HttpStatus.CREATED);
+	
+//		return null;
+		}
+		catch(Exception e) {
+			  throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+		}
+	}
+	@GetMapping("/getmilkreport/{ownerId}")
+	public ResponseEntity<List<MilkDetails>> getMilkDetails(@PathVariable Integer ownerId ) throws Exception{
+		try {
+	List<MilkDetails> resp =	milkProductionService.getMilkDetails(ownerId);
+	String msg = "MILK_DETAILS_INSERT_SUCCESS";
+	return new ResponseEntity<List<MilkDetails>>(resp,HttpStatus.OK);
 	
 //		return null;
 		}

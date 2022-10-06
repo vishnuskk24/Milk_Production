@@ -45,7 +45,7 @@ public class CustomerEntity {
 //	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "c_id")
-	private List<MilkProductionEntity> milkProductionEntities;
+	private List<MilkDetailsEntity> milkProductionEntities;
 //	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cust_id" ,unique = true)
@@ -107,10 +107,10 @@ public class CustomerEntity {
 	public void setOrderEntities(List<OrdersEntity> orderEntities) {
 		this.orderEntities = orderEntities;
 	}
-	public List<MilkProductionEntity> getMilkProductionEntities() {
+	public List<MilkDetailsEntity> getMilkProductionEntities() {
 		return milkProductionEntities;
 	}
-	public void setMilkProductionEntities(List<MilkProductionEntity> milkProductionEntities) {
+	public void setMilkProductionEntities(List<MilkDetailsEntity> milkProductionEntities) {
 		this.milkProductionEntities = milkProductionEntities;
 	}
 	public BankDetailsEntity getBankDetailsEntity() {

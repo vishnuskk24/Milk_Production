@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 
 import com.milk_production.Entity.AddressEntity;
 import com.milk_production.Entity.BankDetailsEntity;
-import com.milk_production.Entity.MilkProductionEntity;
+import com.milk_production.Entity.MilkDetailsEntity;
 import com.milk_production.Entity.OrdersEntity;
 
 public class Customer {
@@ -29,7 +29,7 @@ public class Customer {
 	private LocalDate dateOfJoined;
 	private Address address;
 	private List<Order> orders;
-	private List<MilkProduction> milkProductions;
+	private List<MilkDetails> milkProductions;
 //	
 	private BankDetails bankDetails;
 	
@@ -87,10 +87,10 @@ public class Customer {
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
 	}
-	public List<MilkProduction> getMilkProductions() {
+	public List<MilkDetails> getMilkProductions() {
 		return milkProductions;
 	}
-	public void setMilkProductions(List<MilkProduction> milkProductions) {
+	public void setMilkProductions(List<MilkDetails> milkProductions) {
 		this.milkProductions = milkProductions;
 	}
 	public BankDetails getBankDetails() {

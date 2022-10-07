@@ -22,8 +22,10 @@ public class CustomerServiceImpl implements CustomerService{
 			
 			throw new Exception("Service.CUSTOMER_ALREADY_EXIST");
 		}else { 								// customer is not available
-			
-			Integer customerId =customerDAO.registerCustomer(customer);
+			if(registrationDetails.getBankDetails()==null) {
+				throw new Exception("Service.FOR_REGISTRTION_WE_NEED_CUSTOMER_BANK_DETAILS"); 
+			}
+			Integer customerId =customerDAO.registerCustomer(registrationDetails);
 			
 			return customerId;
 		}

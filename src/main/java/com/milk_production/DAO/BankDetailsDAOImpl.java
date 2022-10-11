@@ -32,7 +32,7 @@ public class BankDetailsDAOImpl implements BankDetailsDAO {
 
 	@Override
 	public void updateIfscCodeByBankId(Integer bankId, BankDetails bankDetails) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub//
 		BankDetailsEntity bankEntity = entityManager.find(BankDetailsEntity.class, bankId);
 		bankEntity.setIfscCode(bankDetails.getIfscCode());
 		
@@ -50,6 +50,7 @@ public class BankDetailsDAOImpl implements BankDetailsDAO {
 	public void updateBranchNameByBankId(Integer bankId, BankDetails bankDetails) {
 		// TODO Auto-generated method stub
 		BankDetailsEntity bankEntity = entityManager.find(BankDetailsEntity.class, bankId);
+		
 		bankEntity.setBranchName(bankDetails.getBranchName());
 		
 	}

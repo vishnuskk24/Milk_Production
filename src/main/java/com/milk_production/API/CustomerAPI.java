@@ -24,14 +24,14 @@ public class CustomerAPI {
 	@Autowired
 	CustomerService customerService;
 	@Autowired
-	Environment enviroment;
+	Environment environment;
 	
 	@PostMapping(value = "/register")
 	public ResponseEntity<String> addCustomer(@RequestBody Customer registrationDetails) throws Exception{
 		try {
 			Integer customerId = customerService.addCustomer(registrationDetails);
 			
-			String msg  = registrationDetails.getCustomerName() + enviroment.getProperty("REGISTRATION_SUCCESS")+customerId;
+			String msg  = registrationDetails.getCustomerName() + environment.getProperty("REGISTRATION_SUCCESS")+customerId;
 			
 			
 			return new ResponseEntity<String>(msg,HttpStatus.CREATED);
@@ -99,7 +99,7 @@ public class CustomerAPI {
 				
 				String Msg = customerService.updateCustomerNameById(customerId , customer.getCustomerName());
 				
-				return new ResponseEntity<String>(enviroment.getProperty(Msg),HttpStatus.OK);
+				return new ResponseEntity<String>(environment.getProperty(Msg),HttpStatus.OK);
 			}catch(Exception e) {
 			
 			
@@ -117,7 +117,7 @@ public class CustomerAPI {
 				
 				String Msg = customerService.updateCustomerAgeById(customerId , customer.getAge());
 				
-				return new ResponseEntity<String>(enviroment.getProperty(Msg),HttpStatus.OK);
+				return new ResponseEntity<String>(environment.getProperty(Msg),HttpStatus.OK);
 			}catch(Exception e) {
 			
 			
@@ -134,7 +134,7 @@ public class CustomerAPI {
 				
 				String Msg = customerService.updateCustomerPhoneNoById(customerId , customer.getPhoneNo());
 				
-				return new ResponseEntity<String>(enviroment.getProperty(Msg),HttpStatus.OK);
+				return new ResponseEntity<String>(environment.getProperty(Msg),HttpStatus.OK);
 			}catch(Exception e) {
 			
 			
@@ -151,7 +151,7 @@ public class CustomerAPI {
 				
 				String Msg = customerService.updateCustomerAadhaarNoById(customerId , customer.getAadhaarNo());
 				
-				return new ResponseEntity<String>(enviroment.getProperty(Msg),HttpStatus.OK);
+				return new ResponseEntity<String>(environment.getProperty(Msg),HttpStatus.OK);
 			}catch(Exception e) {
 			
 			
@@ -166,7 +166,7 @@ public class CustomerAPI {
 				
 				String Msg = customerService.deactivateCustomerByCustomerId(customerId);
 				
-				return new ResponseEntity<String>(enviroment.getProperty(Msg),HttpStatus.OK);
+				return new ResponseEntity<String>(environment.getProperty(Msg),HttpStatus.OK);
 			}catch(Exception e) {
 			
 			

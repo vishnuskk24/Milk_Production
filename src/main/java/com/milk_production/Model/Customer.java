@@ -3,18 +3,6 @@
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
-import com.milk_production.Entity.AddressEntity;
-import com.milk_production.Entity.BankDetailsEntity;
-import com.milk_production.Entity.MilkDetailsEntity;
-import com.milk_production.Entity.OrdersEntity;
-
 public class Customer {
 
 	

@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-
-import com.milk_production.Model.Customer;
 import com.milk_production.Model.MilkDetails;
 import com.milk_production.Service.MilkProductionService;
 
@@ -46,7 +44,7 @@ public class MilkProductionApI {
 	public ResponseEntity<List<MilkDetails>> getMilkDetails(@PathVariable Integer ownerId ) throws Exception{
 		try {
 	List<MilkDetails> resp =	milkProductionService.getMilkDetails(ownerId);
-	String msg = "MILK_DETAILS_INSERT_SUCCESS";
+	
 	return new ResponseEntity<List<MilkDetails>>(resp,HttpStatus.OK);
 	
 //		return null;

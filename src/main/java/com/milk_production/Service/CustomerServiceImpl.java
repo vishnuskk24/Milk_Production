@@ -83,7 +83,7 @@ public class CustomerServiceImpl implements CustomerService{
 			throw new Exception("Service.CUSTOMER_NOT_AVAILABLE");
 					
 		}else {
-			Boolean resp = customerDAO.updateCustomerNameById( customerId,  customerName);
+		 customerDAO.updateCustomerNameById( customerId,  customerName);
 						
 			String respMsg ="Service.CUSTOMERNAME_UPDATED_SUCCESFULLY";
 			
@@ -104,7 +104,7 @@ public class CustomerServiceImpl implements CustomerService{
 			throw new Exception("Service.CUSTOMER_NOT_AVAILABLE");
 					
 		}else {
-			Boolean resp = customerDAO.updateCustomerAgeById( customerId,  age);
+			customerDAO.updateCustomerAgeById( customerId,  age);
 						
 			String respMsg ="Service.CUSTOMERAGE_UPDATED_SUCCESFULLY";
 			
@@ -123,7 +123,7 @@ public class CustomerServiceImpl implements CustomerService{
 			throw new Exception("Service.CUSTOMER_NOT_AVAILABLE");
 					
 		}else {
-			Boolean resp = customerDAO.updateCustomerPhoneNoById( customerId,  phoneNo);
+			customerDAO.updateCustomerPhoneNoById( customerId,  phoneNo);
 						
 			String respMsg ="Service.CUSTOMER_PHONE_NO_UPDATED_SUCCESFULLY";
 			
@@ -142,7 +142,7 @@ public class CustomerServiceImpl implements CustomerService{
 			throw new Exception("Service.CUSTOMER_NOT_AVAILABLE");
 					
 		}else {
-			Boolean resp = customerDAO.updateCustomeraadhaarNoById( customerId, aadhaarNo);
+			 customerDAO.updateCustomeraadhaarNoById( customerId, aadhaarNo);
 						
 			String respMsg ="Service.CUSTOMER_AADHAAR_NO_UPDATED_SUCCESFULLY";
 			
@@ -163,7 +163,7 @@ public class CustomerServiceImpl implements CustomerService{
 			if(customer.getStatus().equals(CustomerStatus.Deactivated)) {
 				throw new Exception("Service.CUSTOMER_WAS_ALREADY_DEACTIVATED");
 			}else {
-			Boolean resp = customerDAO.deactivateCustomerByCustomerId( customerId);
+			 customerDAO.deactivateCustomerByCustomerId( customerId);
 						
 			String respMsg ="Service.CUSTOMER_DEACTIVATED_SUCCESFULLY";
 			

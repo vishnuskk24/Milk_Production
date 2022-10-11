@@ -1,6 +1,6 @@
 package com.milk_production.API;
 
-import javax.print.DocFlavor.READER;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -29,7 +29,7 @@ public class BankDetailsAPI {
 	public ResponseEntity<BankDetails> getBankDetails( @PathVariable Integer customerId) throws Exception{
 		try {
 			BankDetails bankDetails =bankDetailService.getBankDetails(customerId);
-			return null;
+			return new ResponseEntity<BankDetails>(bankDetails,HttpStatus.OK);
 		}catch(Exception e) {
 			  throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
 		}

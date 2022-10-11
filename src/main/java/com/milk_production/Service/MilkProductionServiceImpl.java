@@ -50,7 +50,7 @@ public class MilkProductionServiceImpl implements MilkProductionService {
 		if(milkReports==null) {
 			throw new Exception("CUSTOMER_NOT_FOUND");
 		}
-		else if(milkReports==null) {
+		else if(milkReports.size()==0) {
 			throw new Exception("NO_MILK_RECORD_FOUND");
 		}
 		return milkReports;

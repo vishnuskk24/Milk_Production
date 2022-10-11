@@ -1,6 +1,5 @@
 package com.milk_production.Validator;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.milk_production.Model.Session;

@@ -1,9 +1,6 @@
 package com.milk_production.Service;
 
-import java.util.List;
-
 import com.milk_production.Model.BankDetails;
-import com.milk_production.Model.MilkDetails;
 
 public interface BankDetailsService {
 

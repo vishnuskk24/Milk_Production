@@ -1,7 +1,5 @@
 package com.milk_production.Service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,7 +8,6 @@ import com.milk_production.DAO.BankDetailsDAO;
 import com.milk_production.DAO.CustomerDAO;
 import com.milk_production.Model.BankDetails;
 import com.milk_production.Model.Customer;
-import com.milk_production.Model.MilkDetails;
 
 @Service
 @Transactional

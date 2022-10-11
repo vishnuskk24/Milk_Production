@@ -2,9 +2,6 @@ package com.milk_production.Model;
 
 import java.time.LocalDate;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-
 public class Order {
 
 private Integer orderId;

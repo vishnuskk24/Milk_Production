@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import com.milk_production.Entity.CustomerEntity;
+import com.milk_production.Entity.ItemDetailsEntity;
+import com.milk_production.Entity.OrdersEntity;
 import com.milk_production.Model.Order;
 import com.milk_production.Model.PaymentStatus;
 
@@ -22,20 +24,26 @@ public class OrderDAOImpl  implements OrderDAO {
 		
 		// adding order  to the customer list
 		
-															//		
-															//		private Integer orderId;
-															//		
-															//		private String orderItemType;
-															//		
-															//		private Double orderItemPrice;
-															//		private LocalDate orderedDate;
-															//		
-															//		private PaymentStatus paymentStatus; 
-															//		private Integer quantity;
-															//		
-															//		private Double totalPrice;
-		
-		return null;
+			ItemDetailsEntity ide= entityManager.find(ItemDetailsEntity.class, orderDetails.getOrderItemType().toString());												//;
+			
+			OrdersEntity order = new OrdersEntity();
+			order.setOrderItemPrice(ide.getItemPrice());
+			order.setOrderItemType(orderDetails.getOrderItemType());
+			order.setPaymentStatus(PaymentStatus.Pending);
+			order.setQuantity(orderDetails.getQuantity());
+			order.setTotalPrice(ide.getItemPrice() * orderDetails.getQuantity());
+			order.setOrderedDate(LocalDate.now());
+			ce.getOrderEntities().add(order);
+			
+			return ce.getOrderEntities().get(ce.getOrderEntities().size()-1).getOrderId();
+			
 	}
+	
+	
+	
+	
+	
+	
+	
 
 }

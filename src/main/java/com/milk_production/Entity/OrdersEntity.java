@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.milk_production.Model.ItemType;
 import com.milk_production.Model.PaymentStatus;
 
 @Entity
@@ -19,7 +20,8 @@ public class OrdersEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer orderId;
 	
-	private String orderItemType;
+	@Enumerated(EnumType.STRING)
+	private ItemType orderItemType;
 	
 	private Double orderItemPrice;
 	private LocalDate orderedDate;
@@ -33,11 +35,11 @@ public class OrdersEntity {
 		this.orderId = orderId;
 	}
 
-	public String getOrderItemType() {
+	public ItemType getOrderItemType() {
 		return orderItemType;
 	}
 
-	public void setOrderItemType(String orderItemType) {
+	public void setOrderItemType(ItemType orderItemType) {
 		this.orderItemType = orderItemType;
 	}
 

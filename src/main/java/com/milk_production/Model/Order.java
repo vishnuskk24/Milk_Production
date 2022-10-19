@@ -4,9 +4,9 @@ import java.time.LocalDate;
 
 public class Order {
 
-private Integer orderId;
+	private Integer orderId;
 	
-	private String orderItemType;
+	private ItemType orderItemType;
 	
 	private Double orderItemPrice;
 	private LocalDate orderedDate;
@@ -24,11 +24,11 @@ private Integer orderId;
 		this.orderId = orderId;
 	}
 
-	public String getOrderItemType() {
+	public ItemType getOrderItemType() {
 		return orderItemType;
 	}
 
-	public void setOrderItemType(String orderItemType) {
+	public void setOrderItemType(ItemType orderItemType) {
 		this.orderItemType = orderItemType;
 	}
 

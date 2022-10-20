@@ -77,9 +77,25 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Customer getMyOrder(Integer customerId) throws Exception {
+	public Customer getMonthlyOrder(Integer customerId, Integer month) throws Exception{
+		
+		
+		LocalDate startDate = LocalDate.of(LocalDate.now().getYear(), month, 1);
+		LocalDate currentDate = LocalDate.now();
+		LocalDate lastDate  = startDate.withDayOfMonth(startDate.getMonth().length(startDate.isLeapYear()));
+		
+		Customer cust =customerDAO.getCustomerDetail(customerId);
+		if(cust==null) {
+			throw new Exception("Service.CUSTOMER_NOT_AVAILABLE");
+		}else {
+			Customer customer = orderDAO.getMonthlyOrder( customerId, startDate,lastDate);
+			if(customer.getOrders().size()==0) {
+				throw new Exception("Service.ORDER_NOT_AVAILABLE");
+			}
+			return customer;
+		}
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 	
 	

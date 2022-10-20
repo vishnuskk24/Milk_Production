@@ -111,13 +111,13 @@ public class OrderAPI {
 //		}
 //	
 //	}
-	@GetMapping("/monthlyorder/")
-	public ResponseEntity<List<Customer>> getThisMonthOrder() throws Exception{
+	@GetMapping("/monthlyorder/{customerId}/{month}")
+	public ResponseEntity<Customer> getThisMonthOrder(@PathVariable Integer customerId,@PathVariable Integer month) throws Exception{
 		try {
-			List<Customer> todayOrder = orderService.getTodayOrder();
+			Customer monthlyOrder = orderService.getMonthlyOrder(customerId,month);
 			
 			
-			return new ResponseEntity<List<Customer>>(todayOrder, HttpStatus.OK);
+			return new ResponseEntity<Customer>(monthlyOrder, HttpStatus.OK);
 			
 			
 		}catch(Exception e) {

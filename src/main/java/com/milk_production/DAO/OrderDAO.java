@@ -16,4 +16,6 @@ public interface OrderDAO {
 
 	Customer getOrderByCustomerId(Integer customerId);
 
+	Customer getMonthlyOrder(Integer customerId, LocalDate startDate, LocalDate lastDate);
+
 }

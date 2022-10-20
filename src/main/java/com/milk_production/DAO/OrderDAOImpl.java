@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.hibernate.internal.CriteriaImpl.OrderEntry;
+import org.springframework.stereotype.Repository;
 
 import com.milk_production.Entity.CustomerEntity;
 import com.milk_production.Entity.ItemDetailsEntity;
@@ -17,6 +18,7 @@ import com.milk_production.Model.Customer;
 import com.milk_production.Model.Order;
 import com.milk_production.Model.PaymentStatus;
 
+@Repository(value = "orderDAO")
 public class OrderDAOImpl  implements OrderDAO {
 	@PersistenceContext
 	EntityManager entityManager;
@@ -140,6 +142,49 @@ public class OrderDAOImpl  implements OrderDAO {
 				customer.setOrders(orders);
 		}
 		return customer;
+	}
+
+	@Override
+	public Customer getMonthlyOrder(Integer customerId, LocalDate startDate, LocalDate lastDate) {
+		// TODO Auto-generated method stub
+//		SELECT e FROM Employee e WHERE e.salary BETWEEN 2000L AND 4000L order by e.salary");
+		String queryString ="select c from CustomerEntity c where c.customerId =?1 AND c.orderEntities.orderedDate BETWEEN  ?2 AND ?3 ";
+		Query query = entityManager.createQuery(queryString);
+		
+		List<CustomerEntity>  customerEntities = query.getResultList();
+		if(customerEntities.size()!=0) {
+			CustomerEntity customerEntity = customerEntities.get(0);
+				if(customerEntity!=null) {
+					Customer customer = new Customer();
+						customer.setAadhaarNo(customerEntity.getAadhaarNo());
+						customer.setAge(customerEntity.getAge());
+						customer.setCustmerId(customerEntity.getCustmerId());
+						customer.setCustomerName(customerEntity.getCustomerName());
+						customer.setDateOfJoined(customerEntity.getDateOfJoined());
+						customer.setGender(customerEntity.getGender());
+						customer.setStatus(customerEntity.getStatus());
+						List<OrdersEntity> customerOrders = customerEntity.getOrderEntities();
+						List<Order> orders = new ArrayList<>();
+						
+							for(OrdersEntity customerOrder : customerOrders) {
+								
+								Order order = new Order();
+								order.setOrderedDate(customerOrder.getOrderedDate());
+								order.setOrderId(customerOrder.getOrderId());
+								order.setOrderItemPrice(customerOrder.getOrderItemPrice());
+								order.setOrderItemType(customerOrder.getOrderItemType());
+								order.setPaymentStatus(customerOrder.getPaymentStatus());
+								order.setQuantity(customerOrder.getQuantity());
+								order.setTotalPrice(customerOrder.getTotalPrice());
+								orders.add(order);
+							}
+							customer.setOrders(orders);
+					
+					return customer;
+				}
+				
+			}
+		return null;
 	}
 	
 	

@@ -15,6 +15,6 @@ public interface OrderService {
 
 	List<Customer> getTodayOrder() throws Exception;
 
-	Customer getMyOrder(Integer customerId) throws Exception;
 
+	Customer getMonthlyOrder(Integer customerId, Integer month) throws Exception;
 }

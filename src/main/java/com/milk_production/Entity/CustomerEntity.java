@@ -24,7 +24,7 @@ import com.milk_production.Model.Gender;
 public class CustomerEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer custmerId;
+	private Integer customerId;
 	private String customerName;
 	private Long aadhaarNo;
 	private Long phoneNo;
@@ -54,10 +54,10 @@ public class CustomerEntity {
 	
 	
 	public Integer getCustmerId() {
-		return custmerId;
+		return customerId;
 	}
 	public void setCustmerId(Integer custmerId) {
-		this.custmerId = custmerId;
+		this.customerId = custmerId;
 	}
 	public String getCustomerName() {
 		return customerName;

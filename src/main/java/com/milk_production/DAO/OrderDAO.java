@@ -6,4 +6,6 @@ public interface OrderDAO {
 
 	Integer addCustomerOrder(Integer customerId, Order orderDetails);
 
+	Order getOrderDetailsByOrderId(Integer orderId);
+
 }

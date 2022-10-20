@@ -38,6 +38,14 @@ public class OrderDAOImpl  implements OrderDAO {
 			return ce.getOrderEntities().get(ce.getOrderEntities().size()-1).getOrderId();
 			
 	}
+
+	@Override
+	public Order getOrderDetailsByOrderId(Integer orderId) {
+		// TODO Auto-generated method stub
+		
+		
+		return null;
+	}
 	
 	
 	

@@ -1,5 +1,7 @@
 package com.milk_production.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +34,35 @@ public class OrderServiceImpl implements OrderService {
 		
 		
 	}
+
+	@Override
+	public Customer getOrdersByCustomerId(Integer customerId) throws Exception {
+		Customer customer =customerDAO.getCustomerDetail(customerId);
+		if(customer==null) {
+			throw new Exception("Service.CUSTOMER_NOT_AVAILABLE");
+		}else if(customer.getOrders().size()==0) {
+			throw new Exception("Service.CUSTOMER_HAVE_NO_ORDERS");
+			
+		}else {
+			
+			return customer;
+		}
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Order getOrdersByOrderId(Integer orderId) throws Exception {
+		// TODO Auto-generated method stub
+		Order orderDetails = orderDAO.getOrderDetailsByOrderId(orderId);
+		if(orderDetails==null ) {
+			throw new Exception("Service.ORDER_NOT_AVAILABLE");
+
+		}
+		return orderDetails;
+	}
+	
+	
 	
 
 }

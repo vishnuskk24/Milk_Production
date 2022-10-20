@@ -13,4 +13,6 @@ public interface OrderService {
 
 	Order getOrdersByOrderId(Integer orderId) throws Exception;
 
+	List<Customer> getTodayOrder() throws Exception;
+
 }

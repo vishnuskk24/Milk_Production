@@ -82,4 +82,22 @@ public class OrderAPI {
 			
 	
 	}
+	@GetMapping("/todayorder/")
+	public ResponseEntity<List<Customer>> getTodayOrder() throws Exception{
+		try {
+			List<Customer> todayOrder = orderService.getTodayOrder();
+			
+			
+			return new ResponseEntity<List<Customer>>(todayOrder, HttpStatus.OK);
+			
+			
+		}catch(Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage(),e);
+		}
+		
+	
+			
+	
+	}
 }
+

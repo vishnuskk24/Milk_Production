@@ -1,13 +1,19 @@
 package com.milk_production.DAO;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+import org.hibernate.internal.CriteriaImpl.OrderEntry;
 
 import com.milk_production.Entity.CustomerEntity;
 import com.milk_production.Entity.ItemDetailsEntity;
 import com.milk_production.Entity.OrdersEntity;
+import com.milk_production.Model.Customer;
 import com.milk_production.Model.Order;
 import com.milk_production.Model.PaymentStatus;
 
@@ -42,9 +48,60 @@ public class OrderDAOImpl  implements OrderDAO {
 	@Override
 	public Order getOrderDetailsByOrderId(Integer orderId) {
 		// TODO Auto-generated method stub
+		OrdersEntity orderEntity   = entityManager.find(OrdersEntity.class , orderId);
+		Order order  =null;
+		if(order==null) {
+		order.setOrderedDate(orderEntity.getOrderedDate());
+		order.setOrderId(orderId);
+		order.setOrderItemPrice(orderEntity.getOrderItemPrice());
+		order.setOrderItemType(orderEntity.getOrderItemType());
+		order.setPaymentStatus(orderEntity.getPaymentStatus());
+		order.setQuantity(orderEntity.getQuantity());
+		order.setTotalPrice(orderEntity.getTotalPrice());
+
+		}
+		return order;
+	}
+
+	@Override
+	public List<Customer> getTodayOrders(LocalDate todayDate) {
+		// TODO Auto-generated method stub
+//		List<CustomerEntity> customerEntities = new ArrayList<>();
+		 List<Customer> customers = new ArrayList<>(); 
 		
+		String queryString ="select c from CustomerEntity c where c.orderEntities.orderedDate = ?1";
+		Query query = entityManager.createQuery(queryString);
 		
-		return null;
+		List<CustomerEntity>  customerEntities = query.getResultList();
+		if(customerEntities!=null) {
+			for(CustomerEntity customerEntity:customerEntities ) {
+				Customer customer = new Customer();
+				customer.setAadhaarNo(customerEntity.getAadhaarNo());
+				customer.setAge(customerEntity.getAge());
+				customer.setCustmerId(customerEntity.getCustmerId());
+				customer.setCustomerName(customerEntity.getCustomerName());
+				customer.setDateOfJoined(customerEntity.getDateOfJoined());
+				customer.setGender(customerEntity.getGender());
+				customer.setStatus(customerEntity.getStatus());
+				List<OrdersEntity> customerOrders = customerEntity.getOrderEntities();
+				List<Order> orders = new ArrayList<>();
+				
+					for(OrdersEntity customerOrder : customerOrders) {
+						
+						Order order = new Order();
+						order.setOrderedDate(customerOrder.getOrderedDate());
+						order.setOrderId(customerOrder.getOrderId());
+						order.setOrderItemPrice(customerOrder.getOrderItemPrice());
+						order.setOrderItemType(customerOrder.getOrderItemType());
+						order.setPaymentStatus(customerOrder.getPaymentStatus());
+						order.setQuantity(customerOrder.getQuantity());
+						order.setTotalPrice(customerOrder.getTotalPrice());
+						orders.add(order);
+					}
+					customers.add(customer);
+			}
+		}
+		return customers;
 	}
 	
 	

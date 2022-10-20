@@ -1,5 +1,6 @@
 package com.milk_production.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,16 @@ public class OrderServiceImpl implements OrderService {
 
 		}
 		return orderDetails;
+	}
+
+	@Override
+	public List<Customer> getTodayOrder() throws Exception {
+		// TODO Auto-generated method stub
+		LocalDate todayDate =  LocalDate.now();
+		List<Customer> customers = orderDAO.getTodayOrders(todayDate);
+		
+		
+		return customers;
 	}
 	
 	

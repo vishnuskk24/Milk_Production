@@ -14,4 +14,6 @@ public interface OrderDAO {
 
 	List<Customer> getTodayOrders(LocalDate todayDate);
 
+	Customer getOrderByCustomerId(Integer customerId);
+
 }

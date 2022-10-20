@@ -38,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public Customer getOrdersByCustomerId(Integer customerId) throws Exception {
-		Customer customer =customerDAO.getCustomerDetail(customerId);
+		Customer customer =orderDAO.getOrderByCustomerId(customerId);
 		if(customer==null) {
 			throw new Exception("Service.CUSTOMER_NOT_AVAILABLE");
 		}else if(customer.getOrders().size()==0) {
@@ -46,6 +46,7 @@ public class OrderServiceImpl implements OrderService {
 			
 		}else {
 			
+ 			
 			return customer;
 		}
 		// TODO Auto-generated method stub
@@ -68,9 +69,17 @@ public class OrderServiceImpl implements OrderService {
 		// TODO Auto-generated method stub
 		LocalDate todayDate =  LocalDate.now();
 		List<Customer> customers = orderDAO.getTodayOrders(todayDate);
-		
+		if(customers.size()==0) {
+			throw new Exception("Service.TODAY_ORDER_NOT_FOUND");
+		}
 		
 		return customers;
+	}
+
+	@Override
+	public Customer getMyOrder(Integer customerId) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

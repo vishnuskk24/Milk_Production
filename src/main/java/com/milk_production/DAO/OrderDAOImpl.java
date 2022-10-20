@@ -98,10 +98,48 @@ public class OrderDAOImpl  implements OrderDAO {
 						order.setTotalPrice(customerOrder.getTotalPrice());
 						orders.add(order);
 					}
-					customers.add(customer);
+					customer.setOrders(orders);
+			customers.add(customer);
+					
 			}
 		}
 		return customers;
+	}
+
+	@Override
+	public Customer getOrderByCustomerId(Integer customerId) {
+		
+		// TODO Auto-generated method stub
+		CustomerEntity customerEntity   = entityManager.find(CustomerEntity.class , customerId);
+		Customer customer =null;
+		
+		if(customerEntity!=null) {
+			customer = new Customer();
+			customer.setAadhaarNo(customerEntity.getAadhaarNo());
+			customer.setAge(customerEntity.getAge());
+			customer.setCustmerId(customerEntity.getCustmerId());
+			customer.setCustomerName(customerEntity.getCustomerName());
+			customer.setDateOfJoined(customerEntity.getDateOfJoined());
+			customer.setGender(customerEntity.getGender());
+			customer.setStatus(customerEntity.getStatus());
+			List<OrdersEntity> customerOrders = customerEntity.getOrderEntities();
+			List<Order> orders = new ArrayList<>();
+			
+				for(OrdersEntity customerOrder : customerOrders) {
+					
+					Order order = new Order();
+					order.setOrderedDate(customerOrder.getOrderedDate());
+					order.setOrderId(customerOrder.getOrderId());
+					order.setOrderItemPrice(customerOrder.getOrderItemPrice());
+					order.setOrderItemType(customerOrder.getOrderItemType());
+					order.setPaymentStatus(customerOrder.getPaymentStatus());
+					order.setQuantity(customerOrder.getQuantity());
+					order.setTotalPrice(customerOrder.getTotalPrice());
+					orders.add(order);
+				}
+				customer.setOrders(orders);
+		}
+		return customer;
 	}
 	
 	

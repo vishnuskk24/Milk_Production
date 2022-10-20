@@ -95,9 +95,36 @@ public class OrderAPI {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage(),e);
 		}
 		
-	
+	}
+
+//	@GetMapping("/getmyorders/{customerId}")
+//	public ResponseEntity<Customer> getMyOrder(@PathVariable Integer customerId) throws Exception{
+//		try {
+//			Customer todayOrder = orderService.getMyOrder(customerId);
+//			
+//			
+//			return new ResponseEntity<Customer>(todayOrder, HttpStatus.OK);
+//			
+//			
+//		}catch(Exception e) {
+//			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage(),e);
+//		}
+//	
+//	}
+	@GetMapping("/monthlyorder/")
+	public ResponseEntity<List<Customer>> getThisMonthOrder() throws Exception{
+		try {
+			List<Customer> todayOrder = orderService.getTodayOrder();
 			
+			
+			return new ResponseEntity<List<Customer>>(todayOrder, HttpStatus.OK);
+			
+			
+		}catch(Exception e) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,e.getMessage(),e);
+		}
 	
 	}
 }
+
 

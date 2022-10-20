@@ -15,4 +15,6 @@ public interface OrderService {
 
 	List<Customer> getTodayOrder() throws Exception;
 
+	Customer getMyOrder(Integer customerId) throws Exception;
+
 }

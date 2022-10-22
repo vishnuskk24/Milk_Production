@@ -11,7 +11,7 @@ import com.milk_production.DAO.MilkProducionDAO;
 import com.milk_production.Model.MilkDetails;
 import com.milk_production.Validator.Validator;
 
-@Service
+@Service("milkProductionService")
 @Transactional
 public class MilkProductionServiceImpl implements MilkProductionService {
 	@Autowired

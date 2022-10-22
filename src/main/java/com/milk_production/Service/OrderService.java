@@ -17,4 +17,8 @@ public interface OrderService {
 
 
 	Customer getMonthlyOrder(Integer customerId, Integer month) throws Exception;
+
+	String updateOrderQuantity(Order orderDetails) throws Exception;
+
+	Customer getCustomerPendingOrders(Integer customerId) throws Exception;
 }

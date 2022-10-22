@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.milk_production.DAO.CustomerDAO;
 import com.milk_production.DAO.OrderDAO;
@@ -12,6 +13,7 @@ import com.milk_production.Model.Customer;
 import com.milk_production.Model.Order;
 
 @Service(value = "orderService")
+@Transactional
 public class OrderServiceImpl implements OrderService {
 	@Autowired
 	CustomerDAO customerDAO;
@@ -81,7 +83,7 @@ public class OrderServiceImpl implements OrderService {
 		
 		
 		LocalDate startDate = LocalDate.of(LocalDate.now().getYear(), month, 1);
-		LocalDate currentDate = LocalDate.now();
+//		LocalDate currentDate = LocalDate.now();
 		LocalDate lastDate  = startDate.withDayOfMonth(startDate.getMonth().length(startDate.isLeapYear()));
 		
 		Customer cust =customerDAO.getCustomerDetail(customerId);
@@ -95,6 +97,38 @@ public class OrderServiceImpl implements OrderService {
 			return customer;
 		}
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String updateOrderQuantity(Order orderDetails) throws Exception {
+		// TODO Auto-generated method stub
+		
+		Order myOrderFromDB  = orderDAO.getOrderDetailsByOrderId(orderDetails.getOrderId());
+		if(myOrderFromDB==null) {
+			throw new Exception("Service.ORDER_DETAILS_NOT_AVAILABLE");
+		}
+		orderDAO.updateOrderQuantity(orderDetails);
+		String resp = "Service.UPDATE_ORDER_QUANTITY_SUCCESS";
+		return resp;
+	}
+
+	@Override
+	public Customer getCustomerPendingOrders(Integer customerId) throws Exception {
+		// TODO Auto-generated method stub
+		
+		Customer customer =orderDAO.getCustomerPendingOrders(customerId);
+		if(customer==null) {
+			throw new Exception("Service.CUSTOMER_NOT_AVAILABLE");
+		}else if(customer.getOrders().size()==0) {
+			throw new Exception("Service.CUSTOMER_HAVE_NO_PENDING_ORDERS");
+			
+		}else {
+			
+ 			
+			return customer;
+		}
+		
 		
 	}
 	

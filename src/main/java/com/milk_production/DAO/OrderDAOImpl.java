@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.hibernate.internal.CriteriaImpl.OrderEntry;
+
 import org.springframework.stereotype.Repository;
 
 import com.milk_production.Entity.CustomerEntity;
@@ -53,6 +53,7 @@ public class OrderDAOImpl  implements OrderDAO {
 		OrdersEntity orderEntity   = entityManager.find(OrdersEntity.class , orderId);
 		Order order  =null;
 		if(order==null) {
+			order = new Order();
 		order.setOrderedDate(orderEntity.getOrderedDate());
 		order.setOrderId(orderId);
 		order.setOrderItemPrice(orderEntity.getOrderItemPrice());
@@ -145,7 +146,7 @@ public class OrderDAOImpl  implements OrderDAO {
 	}
 
 	@Override
-	public Customer getMonthlyOrder(Integer customerId, LocalDate startDate, LocalDate lastDate) {
+	public Customer getMonthlyOrder(Integer customerId, LocalDate startDate, LocalDate lastDate) { /// face any issue in query the we resolve in java function usng localdate isBefore and isAfter
 		// TODO Auto-generated method stub
 //		SELECT e FROM Employee e WHERE e.salary BETWEEN 2000L AND 4000L order by e.salary");
 		String queryString ="select c from CustomerEntity c where c.customerId =?1 AND c.orderEntities.orderedDate BETWEEN  ?2 AND ?3 ";
@@ -185,6 +186,58 @@ public class OrderDAOImpl  implements OrderDAO {
 				
 			}
 		return null;
+	}
+
+	@Override
+	public void updateOrderQuantity(Order orderDetails) {
+		// TODO Auto-generated method stub
+		
+		
+		OrdersEntity orderEntity   = entityManager.find(OrdersEntity.class , orderDetails.getOrderId());
+		orderEntity.setQuantity(orderDetails.getQuantity());
+		orderEntity.setTotalPrice(orderDetails.getQuantity() * orderEntity.getOrderItemPrice());
+		
+		
+	}
+
+	@Override
+	public Customer getCustomerPendingOrders(Integer customerId) {
+		// TODO Auto-generated method stub
+		CustomerEntity customerEntity   = entityManager.find(CustomerEntity.class , customerId);
+		Customer customer =null;
+		
+		if(customerEntity!=null) {
+			customer = new Customer();
+			customer.setAadhaarNo(customerEntity.getAadhaarNo());
+			customer.setAge(customerEntity.getAge());
+			customer.setCustmerId(customerEntity.getCustmerId());
+			customer.setCustomerName(customerEntity.getCustomerName());
+			customer.setDateOfJoined(customerEntity.getDateOfJoined());
+			customer.setGender(customerEntity.getGender());
+			customer.setStatus(customerEntity.getStatus());
+			List<OrdersEntity> customerOrders = customerEntity.getOrderEntities();
+			List<Order> orders = new ArrayList<>();
+			
+				for(OrdersEntity customerOrder : customerOrders) {
+					
+					if(customerOrder.getPaymentStatus().equals(PaymentStatus.Pending)) {
+						// pending order will get set
+					
+						Order order = new Order();
+						order.setOrderedDate(customerOrder.getOrderedDate());
+						order.setOrderId(customerOrder.getOrderId());
+						order.setOrderItemPrice(customerOrder.getOrderItemPrice());
+						order.setOrderItemType(customerOrder.getOrderItemType());
+						order.setPaymentStatus(customerOrder.getPaymentStatus());
+						order.setQuantity(customerOrder.getQuantity());
+						order.setTotalPrice(customerOrder.getTotalPrice());
+						orders.add(order);
+					}
+				}
+				customer.setOrders(orders);
+		}
+		return customer;
+
 	}
 	
 	

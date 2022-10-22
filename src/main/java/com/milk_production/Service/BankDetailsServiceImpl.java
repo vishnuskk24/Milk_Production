@@ -9,7 +9,7 @@ import com.milk_production.DAO.CustomerDAO;
 import com.milk_production.Model.BankDetails;
 import com.milk_production.Model.Customer;
 
-@Service
+@Service("bankDetailsService")
 @Transactional
 public class BankDetailsServiceImpl implements BankDetailsService {
 	

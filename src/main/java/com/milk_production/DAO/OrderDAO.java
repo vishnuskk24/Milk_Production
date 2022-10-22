@@ -18,4 +18,8 @@ public interface OrderDAO {
 
 	Customer getMonthlyOrder(Integer customerId, LocalDate startDate, LocalDate lastDate);
 
+	void updateOrderQuantity(Order orderDetails);
+
+	Customer getCustomerPendingOrders(Integer customerId);
+
 }
